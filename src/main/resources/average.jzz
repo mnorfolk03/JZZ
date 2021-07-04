@@ -1,0 +1,15 @@
+{
+    println("Please enter 10 numbers: ");
+    Int counter = 0;
+    Int sum = 0;
+    while(in.hasInt, {
+        sum = sum + in.nextInt();
+        ++counter;
+        if(counter >= 10, {
+            break();
+        });
+    }).else({
+        println("You did not enter a valid number!");
+    });
+    println("\nThe average of the %d numbers is: %.2f" % (counter, sum / counter));
+}

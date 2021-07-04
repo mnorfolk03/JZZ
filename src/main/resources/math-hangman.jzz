@@ -1,0 +1,68 @@
+{
+    Func add = (Int a, Int b)[a + b];
+    Func sub = (Int a, Int b)[a - b];
+    Func mul = (Int a, Int b)[a * b];
+    Func pow = (Int a, Int b)[a ^ b // 1]; # // converts to int
+    Func mod = (Int a, Int b)[a % b];
+
+    Array ops = (add, sub, mul, pow, mod);
+    Array opStr = (" + ", " - ", " x ", " ^ ", " % ");
+    Array hVals = (randInt(15)-5, randInt(15)-5, randInt(15)-5);
+    Array found = (FALSE, FALSE, FALSE);
+
+    Int len = |ops|;
+
+    Int op1Index = randInt(len);
+    Int op2Index = randInt(len);
+
+    Func op1 = ops[op1Index];
+    Func op2 = ops[op2Index];
+
+    Array opArr = (opStr[op1Index], opStr[op2Index]);
+
+    Int finalVal = op2(op1(hVals[0], hVals[1]), hVals[2]);
+
+    Int guess = 0;
+    Int tries = 0;
+
+    Func notAllTrue = ()[
+        !(found[0] == found[1] == found[2] == TRUE)
+    ];
+    react({
+        while(notAllTrue, {
+            Int index = 0;
+            found.forEach((Bool b){
+                if(b, {
+                    print("%2d" % (hVals[index], ));
+                }).else({
+                    print("??");
+                });
+
+                if (index < 2, {
+                    print(opArr[index]);
+                });
+                ++index;
+            });
+            println(" = %2d" % (finalVal,));
+            ++tries;
+            if (in.hasInt(), {
+                in >> guess;
+            }).else({
+                println("You quit after %d guesses." % (tries, ));
+                println("%2d %s %2d %s %2d = %2d" % (hVals[0], opArr[0], hVals[1],
+                                                         opArr[1], hVals[2], finalVal));
+                alert();
+            });
+
+            index = 0;
+            hVals.forEach((Int x){
+                if(guess==x, {
+                    found[index] = TRUE;
+                });
+                ++index;
+            });
+        });
+
+        println("You won in %d guesses!" % (tries, ));
+    });
+}

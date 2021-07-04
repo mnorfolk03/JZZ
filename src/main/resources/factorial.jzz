@@ -1,0 +1,29 @@
+{
+    Func fac = {};
+    #--fac = (Int x = 2){
+        #-- if(x == 0, {
+            return(1);
+        });
+
+        return(fac(x-1));
+        -- #
+
+        Int n = x;
+        if (x > 1, {
+            n = n * fac(x-1);
+        });
+        return(n);
+    };--#
+
+    # new version of factorial using alert and react.
+
+    fac = (Int x)[react({
+        if(x == 0, {
+            alert(1);
+        });
+        return(x * fac(x-1));
+    })];
+
+    println(fac(2));
+    println(fac(3));
+}

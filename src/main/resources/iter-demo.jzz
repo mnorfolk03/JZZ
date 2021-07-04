@@ -1,0 +1,23 @@
+{
+    Array arr = ("are", "you", "as", "hungry", "as", "I", "am");
+    Iter it = arr.it();
+    while (it.has, {
+        print(" "+*it);
+        ++it;
+    });
+    println("?");
+    --it;
+    while (it.has, {
+        print(" "+*it);
+        --it;
+    });
+    println("?");
+
+    println("Enter an index!");
+    Int index = in.nextInt();
+    while([0 <= index < |arr|], {
+        println(arr[index]);
+        in >> index;
+    });
+    print("Invalid index!");
+}
